@@ -60,7 +60,7 @@ public class FilmServiceImp implements FilmService {
 
             existingFilm.setGenre(film.getGenre());
             existingFilm.setDuree(film.getDuree());
-            existingFilm.setMontant(film.getMontant());
+
             existingFilm.setHeureProjection(film.getHeureProjection());
 
 

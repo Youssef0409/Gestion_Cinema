@@ -21,7 +21,7 @@ private Long id;
     private int nbr_ticket;
     private String acteur;
     private String genre;
-    private Double montant;
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date heureProjection;
     private String Duree;

@@ -44,7 +44,7 @@ private SalleRepository salleRepository;
         if (!optionalSalle.isPresent()) {
             return ResponseEntity.notFound().build();}
         Salle existionSalle = optionalSalle.get();
-
+        existionSalle.setNom(salle.getNom());
         existionSalle.setNbPlaces(salle.getNbPlaces());
 
 

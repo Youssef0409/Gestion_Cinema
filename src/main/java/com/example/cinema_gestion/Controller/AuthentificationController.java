@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import static com.example.cinema_gestion.Utils.Constants.Api_Root;
+
 @RestController
 @CrossOrigin(origins = "*")
 public class AuthentificationController  {
@@ -24,13 +26,13 @@ public class AuthentificationController  {
         this.authService = authService;
     }
 
-    @PostMapping("/register")
+    @PostMapping(value=Api_Root+"/register")
     public ResponseEntity<User> registerUser(@RequestBody RegisterRequest request) {
         User user = authService.register(request);
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 
-    @PostMapping("/login")
+    @PostMapping(value = Api_Root+"/login")
     public ResponseEntity<User> loginUser(@RequestBody AuthentificationRequest request) {
         User user = authService.authenticate(request);
         return new ResponseEntity<>(user, HttpStatus.OK);

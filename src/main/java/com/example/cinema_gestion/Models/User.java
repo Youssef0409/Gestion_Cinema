@@ -29,4 +29,8 @@ public class User {
     @OneToMany(mappedBy = "user")
     private Collection<Ticket> ticktes;
 
+
+    public User(String id) {
+        this.id = Long.parseLong(id);
+    }
 }

@@ -7,6 +7,7 @@ import com.example.cinema_gestion.Models.Salle;
 import com.example.cinema_gestion.Service.FilmService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -48,28 +49,20 @@ public class FilmServiceImp implements FilmService {
     }
 
     @Override
-    public ResponseEntity<Film> updateFilm(Long id, Film film) {
-        Optional<Film> optionalFilm = filmRepository.findById(id);
-        if (!optionalFilm.isPresent()) {
-            return ResponseEntity.notFound().build();}
-            Film existingFilm = optionalFilm.get();
+    public ResponseEntity<Film> updateFilm(Long filmId, Film filmDetails) {
+        Film film = filmRepository.findById(filmId)
+                .orElseThrow(() -> new ResourceNotFoundException());
 
-            existingFilm.setTitre(film.getTitre());
+        film.setTitre(filmDetails.getTitre());
+        film.setNbr_ticket(filmDetails.getNbr_ticket());
+        film.setCreateur(filmDetails.getCreateur());
+        film.setGenre(filmDetails.getGenre());
+        film.setHeureProjection(filmDetails.getHeureProjection());
+        film.setDuree(filmDetails.getDuree());
+        film.setSalle(filmDetails.getSalle());
 
-            existingFilm.setCreateur(film.getCreateur());
-
-            existingFilm.setGenre(film.getGenre());
-            existingFilm.setDuree(film.getDuree());
-
-            existingFilm.setHeureProjection(film.getHeureProjection());
-
-
-            Film updateFilm = filmRepository.save(existingFilm);
-
-
-
-
-        return ResponseEntity.ok(updateFilm);
+        final Film updatedFilm = filmRepository.save(film);
+        return ResponseEntity.ok(updatedFilm);
 
         }
     }

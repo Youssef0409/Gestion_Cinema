@@ -18,7 +18,7 @@ public interface SalleApi {
     @GetMapping(value = Api_Root + "/salle/All")
     List<Salle> findAll();
     @DeleteMapping(value = Api_Root + "/salle/delete/{id}")
-    void delete(Long id);
+    void deleteSalle(@PathVariable("id") Long id);
     @PutMapping(value = Api_Root+"/salle/{id}")
     ResponseEntity<Salle> updateSalle(@PathVariable("id") Long id, @RequestBody Salle salle);
 }

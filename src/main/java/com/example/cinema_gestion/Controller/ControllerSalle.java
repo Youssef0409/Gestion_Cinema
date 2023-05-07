@@ -34,7 +34,7 @@ public class ControllerSalle implements SalleApi {
     }
 
     @Override
-    public void delete(Long id) {salleServiceImp.deleteSalle(id);
+    public void deleteSalle(Long id) {salleServiceImp.deleteSalle(id);
 
     }
 

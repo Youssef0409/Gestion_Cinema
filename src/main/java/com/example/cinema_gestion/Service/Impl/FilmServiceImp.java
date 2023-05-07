@@ -56,7 +56,7 @@ public class FilmServiceImp implements FilmService {
 
             existingFilm.setTitre(film.getTitre());
 
-            existingFilm.setActeur(film.getActeur());
+            existingFilm.setCreateur(film.getCreateur());
 
             existingFilm.setGenre(film.getGenre());
             existingFilm.setDuree(film.getDuree());

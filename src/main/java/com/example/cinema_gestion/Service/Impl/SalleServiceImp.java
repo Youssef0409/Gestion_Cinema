@@ -1,11 +1,14 @@
 package com.example.cinema_gestion.Service.Impl;
 
+import com.example.cinema_gestion.Dao.CinemaRepository;
 import com.example.cinema_gestion.Dao.SalleRepository;
+import com.example.cinema_gestion.Models.Cinema;
 import com.example.cinema_gestion.Models.Film;
 import com.example.cinema_gestion.Models.Salle;
 import com.example.cinema_gestion.Service.SalleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +19,8 @@ import java.util.Optional;
 public class SalleServiceImp implements SalleService {
     @Autowired
 private SalleRepository salleRepository;
+    @Autowired
+    private CinemaRepository cinemaRepository;
 
     @Override
     public List<Salle> getAllSalles() {
@@ -30,6 +35,11 @@ private SalleRepository salleRepository;
 
     @Override
     public Salle saveSalle(Salle salle) {
+        Cinema cinema = cinemaRepository.findById(salle.getCinema().getId())
+                .orElseThrow(() -> new ResourceNotFoundException());
+        salle.setCinema(cinema);
+
+
         return salleRepository.save(salle);
     }
 
@@ -39,19 +49,15 @@ private SalleRepository salleRepository;
     }
 
     @Override
-    public ResponseEntity<Salle> updateSalle(Long id, Salle salle) {
-        Optional<Salle> optionalSalle = salleRepository.findById(id);
-        if (!optionalSalle.isPresent()) {
-            return ResponseEntity.notFound().build();}
-        Salle existionSalle = optionalSalle.get();
-        existionSalle.setNom(salle.getNom());
-        existionSalle.setNbPlaces(salle.getNbPlaces());
+    public ResponseEntity<Salle> updateSalle(Long salleId, Salle salleDetails) {
+        Salle salle = salleRepository.findById(salleId)
+                .orElseThrow(() -> new ResourceNotFoundException("Salle not found for this id :: " + salleId));
 
-
-
-
-        Salle updateSalle = salleRepository.save(existionSalle);
-        return ResponseEntity.ok(updateSalle);
+        salle.setNom(salleDetails.getNom());
+        salle.setNbPlaces(salleDetails.getNbPlaces());
+        salle.setCinema(salleDetails.getCinema());
+        final Salle updatedSalle = salleRepository.save(salle);
+        return ResponseEntity.ok(updatedSalle);
 
     }
 

@@ -19,7 +19,7 @@ public class Film {
 private Long id;
     private String titre;
     private int nbr_ticket;
-    private String acteur;
+    private String createur;
     private String genre;
 
     @Temporal(TemporalType.TIMESTAMP)

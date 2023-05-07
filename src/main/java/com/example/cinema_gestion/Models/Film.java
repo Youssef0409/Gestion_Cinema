@@ -34,7 +34,9 @@ private Long id;
     @OneToMany(mappedBy="film")
     private Collection<Ticket> tickets;
 
-
+    public Film(String id) {
+        this.id = Long.parseLong(id);
+    }
 
     public boolean isNbrTicketAvailable() {
         return nbr_ticket > 0;

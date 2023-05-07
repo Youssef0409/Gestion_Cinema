@@ -25,6 +25,8 @@ public class Salle {
     @ManyToOne
     @JoinColumn(name="id_cinema")
     private Cinema cinema;
-
+    public Salle(String id) {
+        this.id = Long.parseLong(id);
+    }
 
 }

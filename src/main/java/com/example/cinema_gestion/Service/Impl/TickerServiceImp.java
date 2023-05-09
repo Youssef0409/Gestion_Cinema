@@ -4,6 +4,7 @@ import com.example.cinema_gestion.Dao.FilmRepository;
 import com.example.cinema_gestion.Dao.TicketRepository;
 import com.example.cinema_gestion.Models.Film;
 import com.example.cinema_gestion.Models.Ticket;
+import com.example.cinema_gestion.Models.User;
 import com.example.cinema_gestion.Service.TicketService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,20 +32,26 @@ private TicketRepository ticketRepository;
 
     }
 
+    public List<Ticket> getTicketsByUser(Long userId) {
+        User user = new User(userId);
+        return ticketRepository.findByUser(user);
+    }
+
     @Override
-    public Ticket saveTicket(Ticket ticket) {
+    public Ticket saveTicket(Ticket ticket){
         Long filmId = ticket.getFilm().getId();
         Film film = filmRepository.findById(filmId)
                 .orElseThrow(() -> new RuntimeException("Film not found"));
         ticket.setFilm(film);
         if (film.isNbrTicketAvailable()) {
+            double prixTicket = film.getPrix();
+            ticket.setPrix(prixTicket);
             film.decrementNbrTicket();
             filmRepository.save(film);
             return ticketRepository.save(ticket);
         } else {
             throw new RuntimeException("No more tickets available for this film");
         }
-
     }
 
 

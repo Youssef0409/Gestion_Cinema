@@ -57,6 +57,8 @@ public class FilmServiceImp implements FilmService {
         film.setNbr_ticket(filmDetails.getNbr_ticket());
         film.setCreateur(filmDetails.getCreateur());
         film.setGenre(filmDetails.getGenre());
+        film.setPrix(filmDetails.getPrix());
+
         film.setHeureProjection(filmDetails.getHeureProjection());
         film.setDuree(filmDetails.getDuree());
         film.setSalle(filmDetails.getSalle());

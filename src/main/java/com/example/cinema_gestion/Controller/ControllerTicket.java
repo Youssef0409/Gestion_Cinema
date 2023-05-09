@@ -45,4 +45,9 @@ public class ControllerTicket implements TicketApi {
     public ResponseEntity<Ticket> updateTicket(Long id, Ticket ticket) {
         return tickerServiceImp.updateTicket(id,ticket);
     }
+
+    public List<Ticket> getTicketsByUser(Long userId) {
+
+        return tickerServiceImp.getTicketsByUser(userId);
+    }
 }

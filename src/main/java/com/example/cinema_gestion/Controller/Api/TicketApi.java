@@ -22,4 +22,10 @@ public interface TicketApi {
     void delete(@PathVariable("id") Long id);
     @PutMapping(value = Api_Root+"/Ticket/{id}")
     ResponseEntity<Ticket> updateTicket(@PathVariable("id") Long id, @RequestBody Ticket ticket);
+
+    @GetMapping(value=Api_Root+"/Ticket/user/{userId}")
+    List<Ticket> getTicketsByUser(@PathVariable Long userId) ;
+
+
+
 }

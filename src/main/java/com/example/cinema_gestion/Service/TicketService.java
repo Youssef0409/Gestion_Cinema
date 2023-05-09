@@ -15,5 +15,5 @@ public interface TicketService {
     Ticket saveTicket(Ticket ticket);
     void deleteTicket(Long id);
     ResponseEntity<Ticket> updateTicket(@PathVariable Long id , @RequestBody Ticket ticket);
-    //List<Ticket> getTicketsByProjection(Long projectionId);
+     List<Ticket> getTicketsByUser(Long userId);
 }

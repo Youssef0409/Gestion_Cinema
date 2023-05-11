@@ -19,7 +19,7 @@ public interface UserAPI {
     List<User> findAll();
     @DeleteMapping(value = Api_Root + "/utilisateurs/delete/{iduser}")
     void delete(@PathVariable("iduser") Long id);
-    @PutMapping(value = Api_Root+"/User/{id}")
+    @PutMapping(value = Api_Root+"/utilisateurs/{id}")
     ResponseEntity<User> updateUser(@PathVariable("id") Long id, @RequestBody User user);
 }
 

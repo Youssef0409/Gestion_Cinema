@@ -14,6 +14,7 @@ import java.util.Optional;
 @Service
 @Slf4j
 public class UserServiceImp implements UserService {
+    @Autowired
     private UserRepository userRepository;
 
     @Override

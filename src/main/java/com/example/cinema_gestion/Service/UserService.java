@@ -13,7 +13,7 @@ public interface UserService {
     User getUserById(Long id);
     User saveUser(User user);
     void deleteUser(Long id);
-    ResponseEntity<User> updateUser(@PathVariable Long id , @RequestBody User user);
+    ResponseEntity<User> updateUser( Long id ,  User user);
 
 }
 

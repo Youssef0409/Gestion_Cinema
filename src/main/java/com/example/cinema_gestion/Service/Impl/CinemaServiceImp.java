@@ -4,6 +4,9 @@ import com.example.cinema_gestion.Dao.CinemaRepository;
 import com.example.cinema_gestion.Models.Cinema;
 import com.example.cinema_gestion.Models.Film;
 import com.example.cinema_gestion.Service.CinemaService;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +20,8 @@ import java.util.Optional;
 
 public class CinemaServiceImp implements CinemaService {
 
-
+    @PersistenceContext
+    private EntityManager entityManager;
     @Autowired
     private CinemaRepository cinemaRepository;
 
@@ -54,14 +58,18 @@ public class CinemaServiceImp implements CinemaService {
             existingCinema.setName(cinema.getName());
             existingCinema.setSalles(cinema.getSalles());
 
-
-
-
             Cinema updateCinema = cinemaRepository.save(existingCinema);
-
-
 
 
             return ResponseEntity.ok(updateCinema);
 
-        }    }
+        }
+
+    public int getNumberOfSallesForCinema( Long cinemaId) {
+        Query query = entityManager.createQuery("SELECT COUNT(s) FROM Salle s WHERE s.cinema.id = :cinemaId");
+        query.setParameter("cinemaId", cinemaId);
+        Long result = (Long) query.getSingleResult();
+        return result.intValue();
+    }
+
+}

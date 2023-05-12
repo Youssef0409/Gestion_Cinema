@@ -14,8 +14,8 @@ public interface CinemaService {
     Optional <Cinema> getCinemaById(Long id);
     Cinema saveCinema(Cinema cinema);
     void deleteCinema(Long id);
-    ResponseEntity<Cinema> updateCinema(@PathVariable Long id , @RequestBody Cinema cinema);
-
+    ResponseEntity<Cinema> updateCinema(Long id , Cinema cinema);
+    int getNumberOfSallesForCinema( Long cinemaId);
 }
 
 

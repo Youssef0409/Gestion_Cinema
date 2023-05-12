@@ -6,6 +6,9 @@ import com.example.cinema_gestion.Models.Film;
 import com.example.cinema_gestion.Models.Ticket;
 import com.example.cinema_gestion.Models.User;
 import com.example.cinema_gestion.Service.TicketService;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +23,8 @@ public class TickerServiceImp implements TicketService {
 private TicketRepository ticketRepository;
     @Autowired
     private FilmRepository filmRepository;
-
+    @PersistenceContext
+    private EntityManager entityManager;
     @Override
     public List<Ticket> getAllTickets() {
         return ticketRepository.findAll();
@@ -79,5 +83,10 @@ private TicketRepository ticketRepository;
         ticketRepository.deleteById(id);
     }
 
-
+    public int getNumberOfTicketsForUser(Long userId) {
+        Query query = entityManager.createQuery("SELECT COUNT(t) FROM Ticket t WHERE t.user.id = :userId");
+        query.setParameter("userId", userId);
+        Long result = (Long) query.getSingleResult();
+        return result.intValue();
+    }
 }

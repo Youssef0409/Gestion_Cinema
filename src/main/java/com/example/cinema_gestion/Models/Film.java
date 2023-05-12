@@ -22,7 +22,7 @@ private Long id;
     private String createur;
     private String genre;
 
-private double prix;
+     private double prix;
     @Temporal(TemporalType.DATE)
     private Date heureProjection;
     private String Duree;

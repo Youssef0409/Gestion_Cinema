@@ -14,7 +14,7 @@ public interface SalleService {
     Optional <Salle>  getSalleById(Long id);
     Salle saveSalle(Salle salle);
     void deleteSalle(Long id);
-    ResponseEntity<Salle> updateSalle(@PathVariable Long id, @RequestBody Salle salle);
+    ResponseEntity<Salle> updateSalle( Long id, Salle salle);
 
     // List<Salle> getSallesByCinema(Long cinemaId);
 

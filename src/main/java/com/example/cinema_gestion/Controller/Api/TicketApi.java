@@ -25,7 +25,7 @@ public interface TicketApi {
 
     @GetMapping(value=Api_Root+"/Ticket/user/{userId}")
     List<Ticket> getTicketsByUser(@PathVariable Long userId) ;
-
-
+    @GetMapping(value = Api_Root+"/Ticket/nombre/{userId}")
+    int getNumberOfTicketsForUser(@PathVariable Long userId);
 
 }

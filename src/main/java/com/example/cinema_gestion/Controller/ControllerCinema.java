@@ -49,4 +49,7 @@ public class ControllerCinema implements CinemaApi {
         return cinemaService.updateCinema(id,cinema);
     }
 
+    public int getNumberOfSallesForCinema( Long cinemaId)
+    { return cinemaService.getNumberOfSallesForCinema(cinemaId);}
+
 }

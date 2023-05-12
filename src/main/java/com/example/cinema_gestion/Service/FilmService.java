@@ -13,6 +13,6 @@ public interface FilmService {
     Optional<Film> getFilmById(Long id);
     Film saveFilm(Film film);
     void deleteFilm(Long id);
-    ResponseEntity<Film> updateFilm(@PathVariable Long id, @RequestBody Film film);
+    ResponseEntity<Film> updateFilm( Long id, Film film);
    //List<Film> searchFilmsByTitle(String title);
 }

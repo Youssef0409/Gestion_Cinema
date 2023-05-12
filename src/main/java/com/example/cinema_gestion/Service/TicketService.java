@@ -14,6 +14,8 @@ public interface TicketService {
     Optional <Ticket> getTicketById(Long id);
     Ticket saveTicket(Ticket ticket);
     void deleteTicket(Long id);
-    ResponseEntity<Ticket> updateTicket(@PathVariable Long id , @RequestBody Ticket ticket);
+    ResponseEntity<Ticket> updateTicket( Long id ,  Ticket ticket);
      List<Ticket> getTicketsByUser(Long userId);
+
+    int getNumberOfTicketsForUser( Long userId);
 }

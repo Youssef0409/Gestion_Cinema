@@ -50,4 +50,8 @@ public class ControllerTicket implements TicketApi {
 
         return tickerServiceImp.getTicketsByUser(userId);
     }
+
+    public int getNumberOfTicketsForUser(Long userId) {
+        return tickerServiceImp.getNumberOfTicketsForUser(userId);
+    }
 }

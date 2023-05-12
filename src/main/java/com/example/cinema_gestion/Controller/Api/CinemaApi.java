@@ -22,4 +22,6 @@ public interface CinemaApi {
     void delete(@PathVariable("id") Long id);
     @PutMapping(value = Api_Root+"/cinema/{id}")
     ResponseEntity<Cinema> updateCinema(@PathVariable("id") Long id, @RequestBody Cinema cinema);
+    @GetMapping(value = Api_Root+"/cinema/{cinemaId}/salles/count")
+     int getNumberOfSallesForCinema(@PathVariable Long cinemaId);
 }
